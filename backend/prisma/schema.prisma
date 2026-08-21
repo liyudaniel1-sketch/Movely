@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  role      Role      @default(USER)
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Category {
+  id     Int             @id @default(autoincrement())
+  name   String          @unique
+  movies MovieCategory[]
+}
+
+model Movie {
+  id          Int             @id @default(autoincrement())
+  name        String
+  description String?
+  posterUrl   String?
+  releaseYear Int?
+  categories  MovieCategory[]
+  comments    Comment[]
+  createdAt   DateTime        @default(now())
+}
+
+model MovieCategory {
+  movie      Movie    @relation(fields: [movieId], references: [id])
+  movieId    Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  @@id([movieId, categoryId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  comment   String
+  movieId   Int
+  userId    Int
+  movie     Movie    @relation(fields: [movieId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([movieId, userId])
+}
