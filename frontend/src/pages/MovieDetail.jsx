@@ -16,7 +16,7 @@ function MovieDetail() {
   }, [id]);
 
   function fetchMovie() {
-    fetch(`http://localhost:3000/api/movies/${id}`)
+    fetch(`https://movely.onrender.com/api/movies/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);

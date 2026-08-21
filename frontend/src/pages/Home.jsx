@@ -12,7 +12,7 @@ function Home() {
   const isSearching = searchQuery.trim().length > 0;
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/movies")
+    fetch("https://movely.onrender.com/api/movies")
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);

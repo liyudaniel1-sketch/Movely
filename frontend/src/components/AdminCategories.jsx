@@ -12,7 +12,7 @@ function AdminCategories() {
   }, []);
 
   function fetchCategories() {
-    fetch("http://localhost:3000/api/categories")
+    fetch("https://movely.onrender.com/api/movies")
       .then((res) => res.json())
       .then(setCategories);
   }
@@ -21,7 +21,7 @@ function AdminCategories() {
     e.preventDefault();
     setError("");
 
-    const res = await fetch("http://localhost:3000/api/categories", {
+    const res = await fetch("https://movely.onrender.com/api/movies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

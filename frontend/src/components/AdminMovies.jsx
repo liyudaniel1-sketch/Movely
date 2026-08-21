@@ -17,13 +17,13 @@ function AdminMovies() {
   useEffect(() => {
     fetchMovies();
 
-    fetch("http://localhost:3000/api/categories")
+    fetch("https://movely.onrender.com/api/movies")
       .then((res) => res.json())
       .then(setCategories);
   }, []);
 
   function fetchMovies() {
-    fetch("http://localhost:3000/api/movies")
+    fetch("https://movely.onrender.com/api/movies")
       .then((res) => res.json())
       .then(setMovies);
   }
@@ -41,7 +41,7 @@ function AdminMovies() {
     e.preventDefault();
     setError("");
 
-    const res = await fetch("http://localhost:3000/api/movies", {
+    const res = await fetch("https://movely.onrender.com/api/movies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ function AdminMovies() {
   async function handleDelete(id) {
     if (!confirm("Delete this movie?")) return;
 
-    await fetch("http://localhost:3000/api/movies/" + id, {
+    await fetch("https://movely.onrender.com/api/movies" + id, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + token,

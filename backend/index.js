@@ -13,7 +13,7 @@ const prisma = new PrismaClient({ adapter });
 const app = express();
 app.use(cors());
 app.use(express.json());
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   res.send("Hello from the movie review API!");
@@ -309,5 +309,5 @@ app.get("/api/categories/:id/movies", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
