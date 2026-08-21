@@ -16,7 +16,7 @@ function ReviewCard({ comment, onUpdated, onDeleted }) {
 
   async function handleSave() {
     setSaving(true);
-    const res = await fetch(`http://localhost:3000/api/comments/${comment.id}`, {
+    const res = await fetch(`https://movely.onrender.com/api/comments/${comment.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ function ReviewCard({ comment, onUpdated, onDeleted }) {
       : "Remove this review as an admin?";
     if (!confirm(confirmMessage)) return;
 
-    await fetch(`http://localhost:3000/api/comments/${comment.id}`, {
+    await fetch(`https://movely.onrender.com/api/comments/${comment.id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

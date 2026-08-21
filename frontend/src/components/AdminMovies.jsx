@@ -17,7 +17,7 @@ function AdminMovies() {
   useEffect(() => {
     fetchMovies();
 
-    fetch("https://movely.onrender.com/api/movies")
+    fetch("https://movely.onrender.com/api/categories")
       .then((res) => res.json())
       .then(setCategories);
   }, []);
@@ -74,7 +74,7 @@ function AdminMovies() {
   async function handleDelete(id) {
     if (!confirm("Delete this movie?")) return;
 
-    await fetch("https://movely.onrender.com/api/movies" + id, {
+    await fetch("https://movely.onrender.com/api/movies/" + id, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + token,
